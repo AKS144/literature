@@ -106,7 +106,7 @@
                             {{-- @foreach($job->categories as $id => $categories)
                                 <span class="label label-info label-many">{{ $categories->name }}</span>
                             @endforeach --}}
-                            {{ $job->categories->name }}
+                            {{-- {{ $job->categories->name }} --}}
                         </td>
                     </tr>
                     <tr>

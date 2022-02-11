@@ -71,48 +71,9 @@
                 @endif
             </div>
 
+          
             <div class="form-group {{ $errors->has('categories') ? 'has-error' : '' }}">
-                <label for="categories">Category</label>
-                <select name="categories" id="categories" class="form-control select2" required>
-                    @foreach($categories as $id => $categories)
-                        <option value="{{ $id }}" {{ (isset($job) && $job->categories ? $job->categories->id : old('location_id')) == $id ? 'selected' : '' }}>{{ $categories }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('categories'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('categories') }}
-                    </em>
-                @endif
-            </div>
-
-            {{-- <div class="form-group {{ $errors->has('categories') ? 'has-error' : '' }}">
-                <label for="categories">Category</label>
-                    <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
-                <select name="categories" id="categories" class="form-control select2" multiple="multiple">
-                    @foreach($categories as $id => $categories)
-                        <option value="{{ $id }}" {{ (in_array($id, old('categories', [])) || isset($job) && $job->categories->contains($id)) ? 'selected' : '' }}>{{ $categories }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('categories'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('categories') }}
-                    </em>
-                @endif               
-            </div> --}}
-
-            <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
-                <label for="address">Address</label>
-                {{-- <input type="text" id="address" name="address" class="form-control" value="{{ old('address', isset($job) ? $job->address : '') }}"> --}}
-                <textarea id="address" name="address" class="form-control ">{{ old('address', isset($job) ? $job->address : '') }}</textarea>
-                @if($errors->has('address'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('address') }}
-                    </em>
-                @endif                
-            </div>
-            {{-- <div class="form-group {{ $errors->has('categories') ? 'has-error' : '' }}">
-                <label for="categories">Category</label>
+                <label for="categories">{{ trans('cruds.job.fields.categories') }}
                     <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
                 <select name="categories[]" id="categories" class="form-control select2" multiple="multiple">
@@ -124,8 +85,20 @@
                     <em class="invalid-feedback">
                         {{ $errors->first('categories') }}
                     </em>
-                @endif               
-            </div> --}}
+                @endif              
+            </div>
+
+            <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+                <label for="address">Address</label>
+                {{-- <input type="text" id="address" name="address" class="form-control" value="{{ old('address', isset($job) ? $job->address : '') }}"> --}}
+                <textarea id="address" name="address" class="form-control ">{{ old('address', isset($job) ? $job->address : '') }}</textarea>
+                @if($errors->has('address'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('address') }}
+                    </em>
+                @endif                
+            </div>
+          
           
 
             {{-- <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
@@ -169,6 +142,21 @@
                     </em>
                 @endif               
             </div> 
+
+
+            <div class="form-group {{ $errors->has('job_nature') ? 'has-error' : '' }}">
+                <label for="job_nature">{{ trans('cruds.job.fields.job_nature') }}</label>
+                <input type="text" id="job_nature" name="job_nature" class="form-control" value="{{ old('job_nature', isset($job) ? $job->job_nature : 'Full-time') }}">
+                @if($errors->has('job_nature'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('job_nature') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.job.fields.job_nature_helper') }}
+                </p>
+            </div>
+
             <div class="form-group {{ $errors->has('job_link') ? 'has-error' : '' }}">
                 <label for="name">Job Link*</label>
                 <input type="text" id="job_link" name="job_link" class="form-control" value="{{ old('job_link', isset($job) ? $job->job_link : '') }}" required>

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     public $table = 'jobs';
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
+        //'deleted_at',
     ];
 
     protected $fillable = [
@@ -28,7 +28,7 @@ class Job extends Model
         //'updated_at',
         //'deleted_at',
         'location_id',
-        '',
+       
         'requirements',
         'description',      
     ];

@@ -7,79 +7,91 @@ use Illuminate\Http\Request;
 
 class ContractrequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[           
+            'client_name'     =>  'required|regex:/^[a-zA-ZÑñ\s]+$/|max:120',           
+            'job_date'        =>  'required|date',
+            'job_duration'    =>  'numeric|digits_between:1,10',
+            'address'         =>  'required|max:255',    
+            'email'           =>  'required|email|max:255',
+            'cost'            =>  'numeric|max:255',  
+            'requirements'    =>  'max:255', 
+            'phone'           =>  'required|digits:10',
+            'job_detail'      =>  'required|max:255',                     
+        ]);
+
+        $contreq                =    new Contractrequest();
+        $contreq->client_name   =    $request->client_name;        
+        $contreq->job_date      =    $request->job_date; 
+        $contreq->job_duration  =    $request->job_duration;     
+        $contreq->address       =    $request->address;
+        $contreq->job_detail    =    $request->job_detail;
+        $contreq->email         =    $request->email;
+        $contreq->phone         =    $request->phone;
+        $contreq->cost          =    $request->cost;
+        $contreq->requirements  =    $request->requirements;
+        $contreq->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Contractrequest  $contractrequest
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Contractrequest $contractrequest)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Contractrequest  $contractrequest
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Contractrequest $contractrequest)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contractrequest  $contractrequest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contractrequest $contractrequest)
+
+    public function update(Request $request, $id)
     {
-        //
+
+        // $this->validate($request,[           
+        //     'client_name'     =>  'required|regex:/^[a-zA-ZÑñ\s]+$/|max:120',           
+        //     'job_date'        =>  'required|date',
+        //     'job_duration'    =>  'numeric|digits_between:1,10',
+        //     'address'         =>  'required|max:255',    
+        //     'email'           =>  'required|email|max:255',
+        //     'cost'            =>  'numeric|max:255',  
+        //     'requirements'    =>  'max:255', 
+        //     'phone'           =>  'required|digits:10',
+        //     'job_detail'      =>  'required|max:255',           
+            
+        // ]);
+
+        // $contreq = Contractrequest::find($id);
+        // $contreq->client_name   =    $request->client_name;        
+        // $contreq->job_date      =    $request->job_date; 
+        // $contreq->job_duration  =    $request->job_duration;     
+        // $contreq->address       =    $request->address;
+        // $contreq->job_detail    =    $request->job_detail;
+        // $contreq->email         =    $request->email;
+        // $contreq->phone         =    $request->phone;
+        // $contreq->cost          =    $request->cost;
+        // $contreq->requirements  =    $request->requirements;
+        // $contreq->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Contractrequest  $contractrequest
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Contractrequest $contractrequest)
     {
-        //
+        
     }
 }

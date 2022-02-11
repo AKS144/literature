@@ -83,6 +83,7 @@
                             <td>
                                 {{ $job->categories }}
                             </td>
+                           
                             <td>
                                 {{ $job->salary ?? '' }}
                             </td>                           
@@ -106,16 +107,12 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
-
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-
     </div>
 </div>
 @endsection

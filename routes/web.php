@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 
 Route::redirect('/home', '/admin');
@@ -14,18 +14,19 @@ Route::resource('jobs', 'JobController')->only(['index', 'show']);
 Route::get('category/{category}', 'CategoryController@show')->name('categories.show');
 Route::get('location/{location}', 'LocationController@show')->name('locations.show');
 
-Route:
 
 //Route::resource('/profile');
 
 //Route::group(['prefix' => 'user', 'as' => 'user.']);
 
 Route::resource('/profile',Artist\ProfileController::class);
-//Route::resource('')
+Route::resource('/client',ClientController::class);
+Route::resource('/artist',ArtistController::class);
+
+
 
 //Route::resource('/journal');
 //Route::resource('/profile','ProfileController');
-
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
