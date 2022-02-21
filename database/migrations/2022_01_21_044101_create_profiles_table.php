@@ -25,7 +25,7 @@ class CreateProfilesTable extends Migration
             $table->string('gender');
             $table->string('profile_img');
             $table->unsignedInteger('user_id');
-            $table->foreign('user')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('category');
             $table->foreign('category')->references('id')->on('categories');
             $table->unsignedInteger('location');

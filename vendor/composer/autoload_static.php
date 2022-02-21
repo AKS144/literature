@@ -647,8 +647,10 @@ class ComposerStaticInit6c4b6b23f4f89607b18746586d52321c
     );
 
     public static $classMap = array (
+        'App\\Album' => __DIR__ . '/../..' . '/app/Album.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
+        'App\\Console\\Commands\\JobDelete' => __DIR__ . '/../..' . '/app/Console/Commands/JobDelete.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contract' => __DIR__ . '/../..' . '/app/Contract.php',
         'App\\Contractrequest' => __DIR__ . '/../..' . '/app/Contractrequest.php',
@@ -725,6 +727,7 @@ class ComposerStaticInit6c4b6b23f4f89607b18746586d52321c
         'App\\Http\\View\\Composers\\SidebarComposer' => __DIR__ . '/../..' . '/app/Http/View/Composers/SidebarComposer.php',
         'App\\Job' => __DIR__ . '/../..' . '/app/Job.php',
         'App\\Location' => __DIR__ . '/../..' . '/app/Location.php',
+        'App\\Mail\\ContractMail' => __DIR__ . '/../..' . '/app/Mail/ContractMail.php',
         'App\\Permission' => __DIR__ . '/../..' . '/app/Permission.php',
         'App\\Profile' => __DIR__ . '/../..' . '/app/Profile.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

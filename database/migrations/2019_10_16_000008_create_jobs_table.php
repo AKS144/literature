@@ -20,8 +20,7 @@ class CreateJobsTable extends Migration
             $table->date('end_date');
             $table->string('salary');
             $table->string('job_link');
-            $table->timestamps();
-           
+            $table->timestamps();           
         });
     }
 }

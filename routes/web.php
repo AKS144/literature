@@ -23,6 +23,32 @@ Route::resource('/profile',Artist\ProfileController::class);
 Route::resource('/client',ClientController::class);
 Route::resource('/artist',ArtistController::class);
 
+/*
+Route::get('/',                [AlbumsController::class,'index']);
+Route::get('/albums',          [AlbumsController::class,'index']);
+Route::get('/albums/create',   [AlbumsController::class,'create']);
+Route::get('/albums/{id}',     [AlbumsController::class,'show']);
+Route::post('/albums/store',   [AlbumsController::class,'store']);
+
+Route::get('/photos/create/{id}', [PhotosController::class,'create']);
+Route::post('/photos/store',      [PhotosController::class,'store']);
+Route::get('/photos/{id}',        [PhotosController::class,'show']);
+Route::delete('/photos/{id}',     [PhotosController::class,'destroy']);
+*/
+
+/*
+Route::get('/',              [App\Http\Controllers\AlbumsController::class,'index']);
+Route::get('/albums',          [App\Http\Controllers\AlbumsController::class,'index']);
+Route::get('/albums/create',   [App\Http\Controllers\AlbumsController::class,'create']);
+Route::get('/albums/{id}',     [App\Http\Controllers\AlbumsController::class,'show']);
+Route::post('/albums/store',   [App\Http\Controllers\AlbumsController::class,'store']);
+
+
+Route::get('/photos/create/{id}', [App\Http\Controllers\PhotosController::class,'create']);
+Route::post('/photos/store',      [App\Http\Controllers\PhotosController::class,'store']);
+Route::get('/photos/{id}',        [App\Http\Controllers\PhotosController::class,'show']);
+Route::delete('/photos/{id}',     [App\Http\Controllers\PhotosController::class,'destroy']);*/
+
 
 
 //Route::resource('/journal');

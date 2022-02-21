@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Album' => $baseDir . '/app/Album.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Company' => $baseDir . '/app/Company.php',
+    'App\\Console\\Commands\\JobDelete' => $baseDir . '/app/Console/Commands/JobDelete.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Contract' => $baseDir . '/app/Contract.php',
     'App\\Contractrequest' => $baseDir . '/app/Contractrequest.php',
@@ -84,6 +86,7 @@ return array(
     'App\\Http\\View\\Composers\\SidebarComposer' => $baseDir . '/app/Http/View/Composers/SidebarComposer.php',
     'App\\Job' => $baseDir . '/app/Job.php',
     'App\\Location' => $baseDir . '/app/Location.php',
+    'App\\Mail\\ContractMail' => $baseDir . '/app/Mail/ContractMail.php',
     'App\\Permission' => $baseDir . '/app/Permission.php',
     'App\\Profile' => $baseDir . '/app/Profile.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

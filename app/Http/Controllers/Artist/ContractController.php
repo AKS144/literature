@@ -126,9 +126,9 @@ class ContractController extends Controller
         $contract->cost          =    $request->cost;
         $contract->requirements  =    $request->requirements;
         //$contract->artist_id     =    $profile->
-        // $contract->user_id       =    $request->$user;
-        // $contract->artist_name   =    $profile->name;
-        // $contract->email         =    $profile->email;
+        //$contract->user_id       =    $request->$user;
+        //$contract->artist_name   =    $profile->name;
+        //$contract->email         =    $profile->email;
         $contract->save();
     }
 
