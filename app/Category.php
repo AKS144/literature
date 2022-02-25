@@ -28,4 +28,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Job::class);
     }
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
 }

@@ -1,25 +1,25 @@
 <div class="col-lg-4 sidebar">
-    <div class="single-slidebar">
+    {{-- <div class="single-slidebar">
         <h4>Jobs by Location</h4>
         <ul class="cat-list">
             @foreach($sidebarLocations as $location)
                 <li><a class="justify-content-between d-flex" href="{{ route('locations.show', $location->id) }}"><p>{{ $location->name }}</p><span>{{ $location->jobs_count }}</span></a></li>
             @endforeach
         </ul>
-    </div>
+    </div> --}}
 
     <div class="single-slidebar">
         <h4>Top rated job posts</h4>
         <div class="active-relatedjob-carusel">
             @foreach($sidebarJobs as $job)
                 <div class="single-rated">
-                    @if($job->company && $job->company->logo)
+                    {{-- @if($job->company && $job->company->logo)
                         <img class="img-fluid" src="{{ $job->company->logo->getUrl() }}" alt="">
-                    @endif
-                    <a href="{{ route('jobs.show', $job->id) }}"><h4>{{ $job->title }}</h4></a>
-                    @if($job->company)
+                    @endif --}}
+                    <a href="{{ route('jobs.show', $job->id) }}"><h4>{{ $job->name }}</h4></a>
+                    {{-- @if($job->company)
                         <h6>{{ $job->company->name }}</h6>
-                    @endif
+                    @endif --}}
                     <p>
                         {{ $job->short_description }}
                     </p>

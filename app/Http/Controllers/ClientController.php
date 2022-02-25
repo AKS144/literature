@@ -56,8 +56,8 @@ class ClientController extends Controller
         //$client->password  =   $request->password;
         $client->password  =   Hash::make($request->password);
         $client->save();
-        $client = Role::select('id')->where('title', 'client')->first();
-        $client->roles()->attach($client);
+        //$client = Role::select('id')->where('title', 'client')->first();
+        //$client->roles()->attach($client);
     }
 
 

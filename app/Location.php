@@ -28,4 +28,9 @@ class Location extends Model
     {
         return $this->hasMany(Job::class, 'location_id', 'id');
     }
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class, 'location_id', 'id');
+    }
 }

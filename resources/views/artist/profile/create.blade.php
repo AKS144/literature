@@ -107,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+                    {{-- <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                         <label for="">{{ __('Category')}}</label>
                         <input type="text" name="category" class="form-control" id="" placeholder="Category">
                         @if ($errors->has('category'))
@@ -115,6 +115,22 @@
                                 <strong>{{ $errors->first('category') }}</strong>
                             </span>
                         @endif
+                    </div> --}}
+
+                    <div class="form-group {{ $errors->has('categories') ? 'has-error' : '' }}">
+                        <label for="categories">{{ trans('cruds.job.fields.categories') }}
+                            <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
+                            <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
+                        <select name="categories[]" id="categories" class="form-control select2" multiple="multiple">
+                            @foreach($categories as $id => $categories)
+                                <option value="{{ $id }}" {{ (in_array($id, old('categories', [])) || isset($job) && $job->categories->contains($id)) ? 'selected' : '' }}>{{ $categories }}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('categories'))
+                            <em class="invalid-feedback">
+                                {{ $errors->first('categories') }}
+                            </em>
+                        @endif              
                     </div>
 
                     <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
@@ -172,7 +188,7 @@
                         @endif
                     </div>
 
-                    <div class="form-group {{ $errors->has('profile_img') ? 'has-error' : '' }}">
+                    {{-- <div class="form-group {{ $errors->has('profile_img') ? 'has-error' : '' }}">
                         <label>{{ __('Profile Pics')}}</label>
                          <div class="col-md-6 pakainfo">
                             <div id="live_camera"></div>
@@ -180,12 +196,23 @@
                             <input type="button" value="Take Snapshot" onClick="capture_web_snapshot()">
                             <input type="hidden" name="profile_img" class="image-tag">
                         </div> 
-                        {{-- <input type="file" name="profile_img" id="profile_img" class="file-upload-default">
+                        <input type="file" name="profile_img" id="profile_img" class="file-upload-default">
                         @if ($errors->has('profile_img'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('profile_img') }}</strong>
                             </span>
-                        @endif --}}
+                        @endif
+                    </div> --}}
+
+
+                    <div class="form-group {{ $errors->has('profile_img') ? 'has-error' : '' }}">
+                        <label>{{ __('Profile Image')}}</label>
+                        <input type="file" name="profile_img" id="profile_img" class="file-upload-default">
+                        @if ($errors->has('profile_img'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('profile_img') }}</strong>
+                            </span>
+                        @endif
                     </div>
 
 
@@ -389,7 +416,7 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> --}}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
 <script type="text/javascript">
     $(function () {
         $("input[name='studio']").click(function () {
@@ -681,7 +708,7 @@
 
 
 
-
+{{-- webcamera
 <script language="JavaScript">
     Webcam.set({
         width: 490,
@@ -698,7 +725,7 @@
             document.getElementById('preview').innerHTML = '<img src="'+site_url+'"/>';
         } );
     }
-</script>
+</script> --}}
 
 
 {{-- 

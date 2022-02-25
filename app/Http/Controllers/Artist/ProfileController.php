@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Artist;
 
 use App\Profile;
+use App\Category;
+use App\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -20,7 +22,9 @@ class ProfileController extends Controller
 
     public function create()
     {
-        return view('artist.profile.create');
+        $locations = Location::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $categories = Category::all()->pluck('name', 'id');
+        return view('artist.profile.create',compact('locations', 'categories'));
     }
 
     public function store(Request $request)
@@ -31,7 +35,7 @@ class ProfileController extends Controller
             'mobile'        =>   'digits:10|numeric|unique:users,mobile',
             'gender'        =>   'required',
             'idtype'        =>   'required',
-            //'u_no'          =>   'digits:12|numeric|unique:users,aadhar',
+            //'u_no'        =>   'digits:12|numeric|unique:users,aadhar',
             'dob'           =>   'required|date',
             'location'      =>   'requried',
             'category'      =>   'required',
@@ -41,13 +45,13 @@ class ProfileController extends Controller
             'url_linkedon'  =>   'max:255',
             'url_facebook'  =>   'max:255',
             'end_date'      =>   'required|date|after:start_date',
-            //'sub_plan'      =>   '',
-            'studio_address'  => 'max:255',
+            //'sub_plan'    =>   '',
+            'studio_address'=> 'max:255',
             'skills'        =>   'max:255',
             'exp_yrs'       =>   'numeric|digits:2|max:255',
             'worked_loc'    =>   'max:255',
             'course_name'   =>   'max:255',
-            'course_cert_img' => 'max:5120|image|mimes:jpg,jpeg,png,svg,gif',
+            'course_cert_img'=>  'max:5120|image|mimes:jpg,jpeg,png,svg,gif',
             'qualification' =>   'max:255',
             'cam_desc'      =>   'max:255',
             'drone_desc'    =>   'max:255',
@@ -66,17 +70,21 @@ class ProfileController extends Controller
         $profile->gender         =   $request->gender;
         $profile->email          =   $request->email;
         //$user->profile_img     =   $request->profile_img;//image
-      /* if($request->hasfile('profile_img'))
-        {
-           $image_file = $request->file('profile_img');
-           $image_extension = $image_file->getClientOriginalExtension();
-           $image_filename = time().'.'.$image_extension;
-           $image_file->move('public/profile_img/',$image_filename);
-           $profile->profile_img = $image_filename;
-        }*/
+    
         if($request->hasfile('profile_img'))
         {
-           /* $image_file = $request->file('profile_img');
+           $image_file = $request->file('profile_img');
+           $img_extension = $image_file->getClientOriginalExtension();//sometimes same name,no will store so time extension will stores with time
+           $img_filename = time().'.'.$img_extension;
+           $image_file->move('public/profile_img/',$img_filename);//folder uploads
+           $profile->profile_img = $img_filename;
+        }
+
+
+
+       /* if($request->hasfile('profile_img'))
+        {
+            $image_file = $request->file('profile_img');
             $image_filename = $image_file->getClientOriginalName();
             $image_resize = Image::make($image_file->getRealPath());
             $image_resize->resize(400, 300);
@@ -84,16 +92,15 @@ class ProfileController extends Controller
             $image_resize->save('public/profile_img/'.$image_filename);
             $profile->profile_img = $image_filename;*/
 
-            $image_file     = $request->file('profile_img');
+            /*$image_file     = $request->file('profile_img');
             $image_filename = $image_file->getClientOriginalName();
             $image_resize   = Image::make($image_file->getRealPath());
             $image_resize->resize(400, 300);
             $image_resize   = 'profile_img/'.$image_filename;
             Storage::disk('s3')->put($image_resize, file_get_contents($image_file));
-            $profile->profile_img = $image_filename;
+            $profile->profile_img = $image_filename;*/
+        //}
 
-
-        }
         $profile->id_type        =   $request->id_type;
         $profile->id_no          =   $request->id_no;
        //$user->password      =      $request->password;
@@ -121,9 +128,9 @@ class ProfileController extends Controller
         //    $profile->course_cert_img = $image_filename;
         // }
 
-        if($request->hasfile('course_cert_img'))
+       /* if($request->hasfile('course_cert_img'))
         {
-          /*  $image_file = $request->file('course_cert_img');
+            $image_file = $request->file('course_cert_img');
             $image_filename = $image_file->getClientOriginalName();
             $image_resize = Image::make($image_file->getRealPath());
             $image_resize->resize(400, 300);
@@ -132,15 +139,24 @@ class ProfileController extends Controller
             //$image_resize = 'course_cert_img/'.$image_filename;
             //Storage::disk('s3')->put($image_resize, file_get_contents($image_file));
             $profile->course_cert_img = $image_filename;*/
-       // }
+        
 
-            $image_file     = $request->file('course_cert_img');
+           /* $image_file     = $request->file('course_cert_img');
             $image_filename = $image_file->getClientOriginalName();
             $image_resize   = Image::make($image_file->getRealPath());
             $image_resize->resize(400, 300);
             $image_resize   = 'course_cert_img/'.$image_filename;
             Storage::disk('s3')->put($image_resize, file_get_contents($image_file));
-            $profile->course_cert_img = $image_filename;
+            $profile->course_cert_img = $image_filename;*/
+        //}
+
+        if($request->hasfile('course_cert_img'))
+        {
+           $image_file = $request->file('course_cert_img');
+           $img_extension = $image_file->getClientOriginalExtension();//sometimes same name,no will store so time extension will stores with time
+           $img_filename = time().'.'.$img_extension;
+           $image_file->move('public/course_cert_img/',$img_filename);//folder uploads
+           $profile->course_cert_img = $img_filename;
         }
 
         $profile->qualification  =   $request->qualification;
@@ -169,9 +185,12 @@ class ProfileController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Profile $profile)
     {
-        //
+        $locations = Location::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $categories = Category::all()->pluck('name', 'id');
+        $profile->load('location', 'categories');
+        return view('artist.profile.edit', compact('locations', 'categories', 'profile'));
     }
 
 

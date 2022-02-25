@@ -2,19 +2,17 @@
 
 @section('home')
 <section class="banner-area relative" id="home">	
-    <div class="overlay overlay-bg"></div>
+    <div class=""></div>
     <div class="container">
         <div class="row fullscreen d-flex align-items-center justify-content-center">
             <div class="banner-content col-lg-12">
-                <h1 class="text-white">
-                    <span>1500+</span> Jobs posted last week				
-                </h1>	
+               
                 <form action="{{ route('search') }}" class="serach-form-area">
                     <div class="row justify-content-center form-wrap">
                         <div class="col-lg-4 form-cols">
                             <input type="text" class="form-control" name="search" placeholder="What are you looking for?">
                         </div>
-                        <div class="col-lg-3 form-cols">
+                        {{-- <div class="col-lg-3 form-cols">
                             <div class="default-select" id="default-selects">
                                 <select name="location">
                                     <option value="0">All Areas</option>
@@ -23,8 +21,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-lg-3 form-cols">
+                        </div> --}}
+                        {{-- <div class="col-lg-3 form-cols">
                             <div class="default-select" id="default-selects2">
                                 <select name="category">
                                     <option value="0">All Categories</option>
@@ -33,7 +31,7 @@
                                     @endforeach
                                 </select>
                             </div>										
-                        </div>
+                        </div>  --}}
                         <div class="col-lg-2 form-cols">
                             <button type="submit" class="btn btn-info">
                               <span class="lnr lnr-magnifier"></span> Search
