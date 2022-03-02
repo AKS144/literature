@@ -2,29 +2,31 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Profile extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $table = 'profiles';
 
     protected $dates = [
         'created_at',
         'updated_at',
-        //'deleted_at',
+        'deleted_at',
     ];
 
     protected $fillable = [
-        'title',
-        'salary',
-        'address',       
-        'category_id',
-        'location_id',       
-        'requirements',
-        'description',      
+        'profile_img',
+        'skills',
+        'exp_yrs',
+        'qualification',
+        'id_type',
+        'id_no',
+        'gender',  
     ];
 
     public function wishlist()
@@ -44,7 +46,7 @@ class Profile extends Model
 
     public function scopeSearchResults($query)
     {
-        return $query->when(!empty(request()->input('location', 0)), function($query) {
+       /* return $query->when(!empty(request()->input('location', 0)), function($query) {
             $query->whereHas('location', function($query) {
                 $query->whereId(request()->input('location'));
             });
@@ -53,17 +55,15 @@ class Profile extends Model
             $query->whereHas('categories', function($query) {
                 $query->whereId(request()->input('category'));
             });
-        })
-        ->when(!empty(request()->input('search', '')), function($query) {
+        })*/
+        return $query->when(!empty(request()->input('search', '')), function($query) {
             $query->where(function($query) {
                 $search = request()->input('search');
                 $query->where('name', 'LIKE', "%$search%")                   
-                    ->orWhere('description', 'LIKE', "%$search%")               
-                    ->orWhere('requirements', 'LIKE', "%$search%")
-                    ->orWhere('address', 'LIKE', "%$search%")
+                    ->orWhere('qualification', 'LIKE', "%$search%")   
+                    ->orWhere('studio_address', 'LIKE', "%$search%")
                     ->orWhereHas('location', function($query) use($search){
-                        $query->where('name','LIKE', "%$search%");
-                    })
+                        $query->where('name','LIKE', "%$search%");})                    
                     ->orWhereHas('categories', function($query) use($search){
                         $query->where('name','LIKE', "%$search%");  
                 });

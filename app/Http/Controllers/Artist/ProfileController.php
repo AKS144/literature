@@ -64,6 +64,7 @@ class ProfileController extends Controller
         ]);*/
 
         $profile                 =   new Profile();    
+        $profile->user_id        =   '1';
         $profile->name           =   $request->name;
         $profile->username       =   $request->username;
         $profile->mobile         =   $request->mobile;
@@ -104,7 +105,7 @@ class ProfileController extends Controller
         $profile->id_type        =   $request->id_type;
         $profile->id_no          =   $request->id_no;
        //$user->password      =      $request->password;
-        $profile->category       =   $request->category;
+       
         $profile->location       =   $request->location;
         $profile->dob            =   $request->dob;
         $profile->url_twitter    =   $request->url_twitter;
@@ -174,14 +175,14 @@ class ProfileController extends Controller
         $profile->other_desc     =   $request->other_desc;
         //dd($profile);
         $profile->save();
-
+        $profile->categories()->sync($request->input('categories', []));
        return redirect()->back();
     }
 
 
     public function show($id)
     {
-        //
+       //return view('artist.');
     }
 
 
@@ -299,6 +300,7 @@ class ProfileController extends Controller
         $profile->other          =   $request->other;
         $profile->other_desc     =   $request->other_desc;       
         $profile->save();
+        
     }
 
 

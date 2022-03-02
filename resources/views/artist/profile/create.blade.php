@@ -133,13 +133,18 @@
                         @endif              
                     </div>
 
+                  
                     <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
-                        <label for="">{{ __('Location')}}</label>
-                        <input type="text" name="location" class="form-control" id="" placeholder="Location">
-                        @if ($errors->has('location'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('location') }}</strong>
-                            </span>
+                        <label for="location">Location*</label>
+                        <select name="location" id="location" class="form-control select2" required>
+                            @foreach($locations as $id => $location)
+                                <option value="{{ $id }}" {{ (isset($job) && $job->location ? $job->location->id : old('location')) == $id ? 'selected' : '' }}>{{ $location }}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('location'))
+                            <em class="invalid-feedback">
+                                {{ $errors->first('location') }}
+                            </em>
                         @endif
                     </div>
 

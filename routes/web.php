@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ArtistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +17,7 @@ Route::get('location/{location}', 'LocationController@show')->name('locations.sh
 
 //Route::group(['prefix' => 'user', 'as' => 'user.']);
 
-//Route::resource('/profile',Artist\ProfileController::class);
+Route::resource('/profile',Artist\ProfileController::class);
 //Route::resource('/client',ClientController::class);
 //Route::resource('/artist',ArtistController::class);
 
@@ -34,6 +33,12 @@ Route::get('/photos/{id}',        [App\Http\Controllers\PhotosController::class,
 Route::delete('/photos/{id}',     [App\Http\Controllers\PhotosController::class,'destroy']);
 
 //Route::resource('/contractrequest' [App\Http\Controllers\ContractrequestController::class]); 
+
+//Route::resource('/wishlist', 'WishlistController', ['except' => ['create', 'edit', 'show', 'update']]);
+
+//Route::resource('/client', [App\Http\Controllers\ClientController::class]);
+//Route::resource('/artist', [App\Http\Controller\ArtistController::class]);
+
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
@@ -69,4 +74,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 });
 
 
-//Route::resource('/wishlist', 'WishlistController', ['except' => ['create', 'edit', 'show', 'update']]);

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
-use App\Http\Controllers\Controller;
 use App\Job;
+use App\Role;
+use App\Category;
 use App\Location;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class JobsController extends Controller
 {
@@ -39,11 +40,12 @@ class JobsController extends Controller
             'end_date'      =>  'required|date|after:start_date',          
         ]);
 
+       
+
         $job                =   new Job();
         $job->name          =   $request->name;
-        $job->company       =   $request->company;  
-        $job->categories    =   $request->categories; 
-        $job->location_id   =   $request->location_id    ; 
+        $job->company       =   $request->company;        
+        $job->location_id   =   $request->location_id; 
         $job->start_date    =   $request->start_date;
         $job->end_date      =   $request->end_date;        
         $job->job_link      =   $request->job_link;
@@ -52,6 +54,9 @@ class JobsController extends Controller
         $job->requirements  =   $request->requirements;
         $job->salary        =   $request->salary;
         $job->save();
+
+        $job->categories()->sync($request->input('categories', []));
+       
         return redirect()->route('admin.jobs.index');
     }
 

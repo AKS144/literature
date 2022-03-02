@@ -40,9 +40,7 @@
                         <th>
                             Address
                         </th>
-                        <th>
-                            Category
-                        </th>
+                      
                         <th>
                             Salary
                         </th>                        
@@ -63,9 +61,7 @@
                             <td>
                                 {{ $job->name ?? '' }}
                             </td>
-                            <td>
-                                {{ $job->company ?? '' }}
-                            </td>
+                           
                             <td>
                                 {{ $job->description ?? '' }}
                             </td>
@@ -81,7 +77,7 @@
                                 @endforeach
                             </td> --}}
                             <td>
-                                {{ $job->categories }}
+                                {{ $job->address }}
                             </td>
                            
                             <td>
