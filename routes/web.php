@@ -14,6 +14,8 @@ Route::resource('jobs', 'JobController')->only(['index', 'show']);
 Route::get('category/{category}', 'CategoryController@show')->name('categories.show');
 Route::get('location/{location}', 'LocationController@show')->name('locations.show');
 
+//Route::get()
+
 
 //Route::resource('/profile');
 
@@ -48,11 +50,6 @@ Route::get('/photos/create/{id}', [App\Http\Controllers\PhotosController::class,
 Route::post('/photos/store',      [App\Http\Controllers\PhotosController::class,'store']);
 Route::get('/photos/{id}',        [App\Http\Controllers\PhotosController::class,'show']);
 Route::delete('/photos/{id}',     [App\Http\Controllers\PhotosController::class,'destroy']);*/
-
-
-
-//Route::resource('/journal');
-//Route::resource('/profile','ProfileController');
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Location;
 use App\Job;
+use App\Profile;
+use App\Location;
 
 class LocationController extends Controller
 {
@@ -18,5 +19,17 @@ class LocationController extends Controller
         $banner = 'Location: '.$location->name;
     
         return view('jobs.index', compact(['jobs', 'banner']));
+    }
+
+
+    public function showprof(Location $location)
+    {
+        $jobs = Profile::with('company')
+            ->whereHas('location', function($query) use($location) {
+                $query->whereId($location->id);
+            })
+            ->paginate(7);
+    
+        return view('jobs.index', compact(['jobs']));
     }
 }
