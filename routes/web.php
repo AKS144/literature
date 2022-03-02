@@ -17,6 +17,15 @@ Route::get('location/{location}', 'LocationController@show')->name('locations.sh
 
 //Route::group(['prefix' => 'user', 'as' => 'user.']);
 
+Route::get('/prof','HomePController@index')->name('prof');
+Route::get('profsearch', 'HomePController@search')->name('search');
+Route::resource('profiles', 'ProfileController')->only(['index', 'show']);
+Route::get('category/{category}', 'CategoryController@showprof')->name('categories.showprof');
+Route::get('location/{location}', 'LocationController@showprof')->name('locations.showprof');
+
+
+
+
 Route::resource('/profile',Artist\ProfileController::class);
 //Route::resource('/client',ClientController::class);
 //Route::resource('/artist',ArtistController::class);

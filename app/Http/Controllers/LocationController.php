@@ -19,4 +19,17 @@ class LocationController extends Controller
     
         return view('jobs.index', compact(['jobs', 'banner']));
     }
+
+    public function showprof(Location $location)
+    {
+        $profiles = Job::with('name')
+            ->whereHas('location', function($query) use($location) {
+                $query->whereId($location->id);
+            })
+            ->paginate(7);
+
+        //$banner = 'Location: '.$location->name;
+    
+        return view('profiles.index', compact(['profiles']));
+    }
 }

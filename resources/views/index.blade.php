@@ -40,9 +40,9 @@
                     </div>
                 </form>	
                 <p class="text-white"> <span>Search by categories:</span>
-                @foreach($searchByCategory as $id=>$searchByCategory)
+                {{-- @foreach($searchByCategory as $id=>$searchByCategory)
                     <a href="{{ route('categories.show', $id) }}" class="text-white">{{ $searchByCategory }}</a>@if (!$loop->last),@endif
-                @endforeach
+                @endforeach --}}
                 </p>
             </div>											
         </div>

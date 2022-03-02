@@ -18,13 +18,12 @@ class Profile extends Model
     ];
 
     protected $fillable = [
-        'profile_img',
+        'name',
+        'location',
+        'categories',
+        'studio_address',
         'skills',
-        'exp_yrs',
-        'qualification',
-        'id_type',
-        'id_no',
-        'gender',    
+        'qualification'   
     ];
 
 
@@ -53,13 +52,12 @@ class Profile extends Model
         ->when(!empty(request()->input('search', '')), function($query) {
             $query->where(function($query) {
                 $search = request()->input('search');
-                $query->where('name', 'LIKE', "%$search%")                   
-                ->orWhere('qualification', 'LIKE', "%$search%")   
-                ->orWhere('studio_address', 'LIKE', "%$search%")
-                ->orWhereHas('location', function($query) use($search){
-                    $query->where('name','LIKE', "%$search%");})                    
-                ->orWhereHas('categories', function($query) use($search){
-                    $query->where('name','LIKE', "%$search%");
+                $query->where('name', 'LIKE', "%$search%")  
+                      ->orWhere('studio_address', 'LIKE', "%$search%")
+                      ->orWhere('qualification', 'LIKE', "%$search%")
+                      ->orWhere('skills', 'LIKE', "%$search%")                                        
+                      ->orWhereHas('categories', function($query) use($search){
+                          $query->where('name','LIKE', "%$search%");  });    
             });
         });
     }

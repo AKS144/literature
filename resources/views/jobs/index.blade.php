@@ -15,7 +15,7 @@
                 <div class="title d-flex flex-row justify-content-between">
                     <div class="titles">
                         <a href="{{ route('jobs.show', $job->id) }}"><h4>{{ $job->name }}</h4></a>
-                        {{-- <h6>{{ $job->company->name }}</h6>					 --}}
+                       
                     </div>
                 </div>
                 <p>

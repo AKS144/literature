@@ -9,16 +9,15 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $jobs = Profile::with('name')
+        $profiles = Profile::with('name')
             ->paginate(7);
 
-        $banner = 'Jobs';
-        return view('jobs.index', compact(['jobs', 'banner']));
+        //$banner = 'Jobs';
+        return view('profiles.index', compact(['profiles']));
     }
 
-    public function show(Profile $job)
-    {
-        $job->load('company');
-        return view('jobs.show', compact('job'));
+    public function show(Profile $profiles)
+    {      
+        return view('profiles.show', compact('profiles'));
     }
 }

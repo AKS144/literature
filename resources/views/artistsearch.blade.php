@@ -12,7 +12,7 @@
                         <div class="col-lg-4 form-cols">
                             <input type="text" class="form-control" name="search" placeholder="What are you looking for?">
                         </div>
-                        <div class="col-lg-3 form-cols">
+                        {{-- <div class="col-lg-3 form-cols">
                             <div class="default-select" id="default-selects">
                                 <select name="location">
                                     <option value="0">All Areas</option>
@@ -21,8 +21,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-lg-3 form-cols">
+                        </div> --}}
+                        {{-- <div class="col-lg-3 form-cols">
                             <div class="default-select" id="default-selects2">
                                 <select name="category">
                                     <option value="0">All Categories</option>
@@ -31,7 +31,7 @@
                                     @endforeach
                                 </select>
                             </div>										
-                        </div>
+                        </div>  --}}
                         <div class="col-lg-2 form-cols">
                             <button type="submit" class="btn btn-info">
                               <span class="lnr lnr-magnifier"></span> Search
@@ -40,9 +40,9 @@
                     </div>
                 </form>	
                 <p class="text-white"> <span>Search by categories:</span>
-                @foreach($searchByCategory as $id=>$searchByCategory)
+                {{-- @foreach($searchByCategory as $id=>$searchByCategory)
                     <a href="{{ route('categories.show', $id) }}" class="text-white">{{ $searchByCategory }}</a>@if (!$loop->last),@endif
-                @endforeach
+                @endforeach --}}
                 </p>
             </div>											
         </div>
@@ -52,22 +52,17 @@
 
 @section('content')
 <div class="col-lg-8 post-list">
-    @foreach($jobs as $job)
+    @foreach($profiles as $profile)
         <div class="single-post d-flex flex-row">
            
             <div class="details">
                 <div class="title d-flex flex-row justify-content-between">
                     <div class="titles">
-                        <a href="{{ route('jobs.show', $job->id) }}"><h4>{{ $job->name }}</h4></a>
-                        <h6>{{ $job->company}}</h6>					
+                        <a href="{{ route('profiles.show', $profile->id) }}"><h4>{{ $profile->name }}</h4></a>
+                       			
                     </div>
                 </div>
-                <p>
-                    {{ $job->description }}
-                </p>
-                
-                <p class="address"><span class="lnr lnr-map"></span> {{ $job->address }}</p>
-                <p class="address"><span class="lnr lnr-database"></span> {{ $job->salary }}</p>
+               
             </div>
         </div>
     @endforeach
