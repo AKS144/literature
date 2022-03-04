@@ -32,6 +32,11 @@ class Profile extends Model
         return $this->belongsTo(Location::class, 'location_id');
     }
 
+    public function equipments()
+    {
+        return $this->belongsToMany(Equipment::class);
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class);

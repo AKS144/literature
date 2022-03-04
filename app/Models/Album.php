@@ -12,6 +12,6 @@ class Album extends Model
 		'cover_image'
 	];
     public function photos(){
-    	return $this->hasMany('App\Photo');
+    	return $this->hasMany(Photo::class);
     }
 }

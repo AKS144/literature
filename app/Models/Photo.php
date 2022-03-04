@@ -15,6 +15,6 @@ class Photo extends Model
     ];
 
     public function album(){
-    	return $this->belongsTo('App/Album');
+    	return $this->belongsTo(Album::class);
     }
 }
