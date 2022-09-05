@@ -7,7 +7,7 @@
         <div class="row fullscreen d-flex align-items-center justify-content-center">
             <div class="banner-content col-lg-12">
                 <h1 class="text-white">
-                    <span>1500+</span> Jobs posted last week				
+                    <span>1500+</span> Jobs posted last weeks				
                 </h1>	
                 <form action="{{ route('search') }}" class="serach-form-area">
                     <div class="row justify-content-center form-wrap">
